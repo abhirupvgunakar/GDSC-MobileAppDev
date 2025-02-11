@@ -10,7 +10,7 @@ import {
 import { useRouter } from 'expo-router';
 
 import styles from './welcome.style';
-import { icons, SIZES } from '../../constants';
+import { icons, SIZES } from '../../../constants';
 
 const jobTypes = ["Full-time", "Part-time", "Internships"];
 
@@ -47,8 +47,8 @@ const Welcome = () => {
       <View style={styles.tabContainer}>
         <FlatList
           data={jobTypes}
-          keyExtractor={(item) => item} // Added a keyExtractor
-          renderItem={({ item }) => (  // Destructured item properly
+          keyExtractor={(item) => item}
+          renderItem={({ item }) => ( 
             <TouchableOpacity>
               <Text>{item}</Text>  {/* Added text inside TouchableOpacity */}
             </TouchableOpacity>
