@@ -16,11 +16,12 @@ const jobTypes = ["Full-time", "Part-time", "Internships"];
 
 const Welcome = () => {
   const router = useRouter();
+  const [activeJobType, setActiveJobType] = useState("Internships");
 
   return (
     <View>
       <View style={styles.container}>
-        <Text style={styles.userName}>Hello Abhirup</Text>
+        <Text style={styles.userName}>Hello Abhirup!</Text>
         <Text style={styles.welcomeMessage}>Find your job match</Text>
       </View>
 
@@ -30,7 +31,7 @@ const Welcome = () => {
             style={styles.searchInput}
             value="" 
             onChangeText={() => {}}  // Fixed onChange to onChangeText
-            placeholder="What are you looking for?"
+            placeholder="Search for jobs / internships"
           />
         </View>
 
@@ -47,12 +48,20 @@ const Welcome = () => {
       <View style={styles.tabContainer}>
         <FlatList
           data={jobTypes}
-          keyExtractor={(item) => item}
           renderItem={({ item }) => ( 
-            <TouchableOpacity>
-              <Text>{item}</Text>  {/* Added text inside TouchableOpacity */}
+            <TouchableOpacity
+              style={styles.tab(activeJobType, item)}
+              onPress={() => {
+                setActiveJobType(item);
+                router.push('/search/${item}');
+              }}
+            >
+              <Text style={styles.tabText(activeJobType, item)}>{item}</Text>
             </TouchableOpacity>
           )}
+          keyExtractor={(item) => item}
+          contentContainerStyle={{ columnGap: SIZES.small }}
+          horizontal 
         />
       </View>
 
